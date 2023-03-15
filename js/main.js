@@ -1,10 +1,9 @@
 'use strict';
 
-function getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min) + min);
-};
+// FUNZIONE CHE CREA UN NUMERO CASUALE 
+function randomNumber(min, max){
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}
 
 
 const minori = [
@@ -100,23 +99,40 @@ const pescaMinore = document.getElementById("pesca-minore")
 const pescaMaggiore = document.getElementById("pesca-maggiore")
 const reset = document.getElementById('rimescola')
 
+// pescaMinore.addEventListener('click', function () {
+//     div.innerHTML = '';
+//     let picked = false
+//     let cartaEstratta;
+//     if (picked === false){
+//        while (picked === false) {
+//         cartaEstratta = getRandomInt(1, 56)
+//         if (!pescate.includes(cartaEstratta)) {
+//             pescate.push(cartaEstratta)
+//             picked = true;
+//         }
+//     } 
+//     }    
+//     console.log(cartaEstratta)
+//     console.log(pescate)
+// })
+
+
 pescaMinore.addEventListener('click', function () {
-    div.innerHTML = '';
-    let picked = false
-    let cartaEstratta;
-    if (picked === false){
-       while (picked === false) {
-        cartaEstratta = getRandomInt(1, 56)
-        if (!pescate.includes(cartaEstratta)) {
-            pescate.push(cartaEstratta)
-            picked = true;
+    // MI INIZIALIZZO LA LUNGHEZZA DELL'ARRAY PRIMA DEL CICLO 
+    const lunghezzaArray = pescate.length;
+
+if(lunghezzaArray < 56){
+    // FACCIO ESEGUIRE QUESTA CONDIZIONE FINO A CHE NON SI VERIFICANO DELLE CONDIZIONI 
+    while (pescate.length === lunghezzaArray) {
+        let number = randomNumber(1, 56);
+        if (pescate.includes(number)===false) {
+            pescate.push(number)
         }
-    } 
-    }    
-    console.log(cartaEstratta)
-    console.log(pescate)
+    }
+}
+console.log(pescate)
 })
 
-reset.addEventListener('click', function(){
+reset.addEventListener('click', function () {
     pescate = [];
 })
